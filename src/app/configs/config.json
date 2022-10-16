@@ -1,0 +1,13 @@
+ {
+    "nifty_stocks_live_data": "https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%2050",
+    "nifty_future_live_data": "https://www.nseindia.com/api/liveEquity-derivatives?index=nse50_fut",
+    "nifty_options_live_data_previous": "https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY",
+    "nifty_options_live_data_new": "https://www.nseindia.com/api/liveEquity-derivatives?index=nse50_opt",
+
+    "bank_nifty_future_live_data": "https://www.nseindia.com/api/liveEquity-derivatives?index=nifty_bank_fut",
+    "bank_nifty_options_live_data_previous": "https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY",
+    "bank_nifty_options_live_data_new": "https://www.nseindia.com/api/liveEquity-derivatives?index=nifty_bank_optt",
+
+    "all_stocks_futures_live_data": "https://www.nseindia.com/api/liveEquity-derivatives?index=stock_fut",
+    "market_status": "https://www.nseindia.com/api/marketStatus"
+}

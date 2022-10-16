@@ -1,0 +1,30 @@
+<div class="fixTableHead" *ngIf="type === 'futures'">
+    <table class="sortable">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Expiry</th>
+          <th>Current Price</th>
+          <th>Volume</th>
+          <th>OI (Open)</th>
+          <th>Change</th>
+          <th>% Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nifty_futures_data?.data; index as i; first as isFirst" class="item"
+          [ngClass]="{'down': data.change < 0, 'up' : data.change >= 0 }">
+          <td>{{data.underlying}}</td>
+          <td>{{data.expiryDate}}</td>
+          <td>{{data.lastPrice}}</td>
+          <td>{{data.noOfTrades}}</td>
+          <td>{{data.openInterest}}</td>
+          <td>{{data.change}}</td>
+          <td>{{data.pChange}}</td>
+  
+        </tr>
+      </tbody>
+  
+  
+    </table>
+  </div>

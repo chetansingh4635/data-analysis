@@ -1,60 +1,57 @@
-<div class="fixTableHead">
-    <table class="sortable">
-        <thead>
-            <tr>
-                <th>Strike Price</th>
-                <th>Nested Data</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of options_data; index as i; first as isFirst" class="item">
-                <td>{{data.strike}}</td>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Current Price(CE)</th>
-                            <th>IV(CE)</th>
-                            <th>OI (CE)</th>
-                            <th>COI(CE)</th>
-                            <th>Volume(CE)</th>
-                            <!-- <th>%Change(CE)</th> -->
-                            <th>Conclusion(CE)</th>
+<div>
+    <span *ngFor="let data of options_data; index as i;">
+        <button type="button" [ngClass]="{'btn btn-primary ': data.strike === selected_strike_data.strike}"
+            class="strike-buttons" (click)="selectedStrikePrice(data.strike)">{{data.strike}}</button>
+    </span>
+    <div class="fixTableHead">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>LTP(CE)</th>
+                    <th>IV(CE)</th>
+                    <th>OI (CE)</th>
+                    <th>COI(CE)</th>
+                    <th>Volume(CE)</th>
+                    <th>COI/NT(CE)</th>
+                    <th>Conclusion(CE)</th>
 
-                            <th>Time</th>
-                            <th>Current Price(PE)</th>
-                            <th>IV(PE)</th>
-                            <th>OI (PE)</th>
-                            <th>COI(PE)</th>
-                            <th>Volume(PE)</th>
-                            <!-- <th>%Change(PE)</th> -->
-                            <th>Conclusion(PE)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let nested_data of data?.data; index as j; " class="item">
-                            <td>{{nested_data.time}}</td>
-                            <td>{{nested_data['CE'].lastPrice}}</td>
-                            <td>{{nested_data['CE'].impliedVolatility}}</td>
-                            <td>{{nested_data['CE'].openInterest}}</td>
-                            <td>{{nested_data['CE'].changeinOpenInterest}}</td>
-                            <td>{{nested_data['CE'].totalTradedVolume}}</td>
-                            <!-- <td>{{nested_data['CE'].pChange.toFixed(2)}}</td> -->
-                            <td></td>
+                    <th>Time</th>
+                    <th>LTP(PE)</th>
+                    <th>IV(PE)</th>
+                    <th>OI (PE)</th>
+                    <th>COI(PE)</th>
+                    <th>Volume(PE)</th>
+                    <th>COI/NT(PE)</th>
+                    <th>Conclusion(PE)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let nested_data of selected_strike_data?.data; index as j; " class="item">
+                    <td>{{nested_data.time}}</td>
+                    <td>{{nested_data['CE'].lastPrice}}</td>
+                    <td>{{nested_data['CE'].impliedVolatility}}</td>
+                    <td>{{nested_data['CE'].openInterest}}</td>
+                    <td>{{nested_data['CE'].changeinOpenInterest}}</td>
+                    <td>{{nested_data['CE'].totalTradedVolume}}</td>
+                    <td>{{((nested_data['CE'].changeinOpenInterest /
+                        nested_data['CE'].totalTradedVolume)*100).toFixed(2)}}</td>
+                    <td></td>
 
-                            <td>{{nested_data.time}}</td>
-                            <td>{{nested_data['PE'].lastPrice}}</td>
-                            <td>{{nested_data['PE'].impliedVolatility}}</td>
-                            <td>{{nested_data['PE'].openInterest}}</td>
-                            <td>{{nested_data['PE'].changeinOpenInterest}}</td>
-                            <td>{{nested_data['PE'].totalTradedVolume}}</td>
-                            <!-- <td>{{nested_data['PE'].pChange.toFixed(2)}}</td> -->
-                            <td></td>
-                          
-                        </tr>
-                    </tbody>
-                </table>
-            </tr>
-        </tbody>
-    </table>
+                    <td>{{nested_data.time}}</td>
+                    <td>{{nested_data['PE'].lastPrice}}</td>
+                    <td>{{nested_data['PE'].impliedVolatility}}</td>
+                    <td>{{nested_data['PE'].openInterest}}</td>
+                    <td>{{nested_data['PE'].changeinOpenInterest}}</td>
+                    <td>{{nested_data['PE'].totalTradedVolume}}</td>
+                    <td>{{((nested_data['PE'].changeinOpenInterest /
+                        nested_data['PE'].totalTradedVolume)*100).toFixed(2)}}</td>
+
+                    <td></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>

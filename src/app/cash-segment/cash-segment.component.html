@@ -1,34 +1,42 @@
-<div class="fixTableHead">
-  <table class="sortable">
-    <thead>
-      <tr>
-        <th>Symbol</th>
-        <th>LTP</th>
-        <th>Open</th>
-        <th>High</th>
-        <th>Low</th>
-        <th>Prev. Close</th>
-        <th>% Change</th>
-        <th>Volume</th>
-        <th>Traded Value (in Cr.)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of nifty_stocks_data?.data; index as i; first as isFirst" class="item"
-        [ngClass]="{'down': data.lastPrice < data.previousClose, 'up' : data.lastPrice >= data.previousClose }">
-        <td>{{data.symbol}}</td>
-        <td>{{data.lastPrice}}</td>
-        <td>{{data.open}}</td>
-        <td>{{data.dayHigh}}</td>
-        <td>{{data.dayLow}}</td>
-        <td>{{data.previousClose}}</td>
-        <td>{{data.pChange}}</td>
-        <td>{{data.totalTradedVolume}}</td>
-        <td>{{data.totalTradedValue ? (data.totalTradedValue / 10000000).toFixed(2) : 0 }}</td>
+<div>
+  <div class="meta-data">
+    <span class="meta-data-item"> Nifty : {{nifty_data?.last}}</span>
+    <span class="meta-data-item"> Advance : {{advance_to_decline?.advances}}</span>
+    <span class="meta-data-item"> Decline : {{advance_to_decline?.declines}}</span>
+    <span class="meta-data-item"> Unchanged : {{advance_to_decline?.unchanged}}</span>
+  </div>
+  <div class="fixTableHead">
+    <table class="sortable">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>LTP</th>
+          <th>Open</th>
+          <th>High</th>
+          <th>Low</th>
+          <th>Prev. Close</th>
+          <th>% Change</th>
+          <th>Volume</th>
+          <th>Traded Value (in Cr.)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nifty_stocks_data?.data; index as i; first as isFirst" class="item"
+          [ngClass]="{'down': data.lastPrice < data.previousClose, 'up' : data.lastPrice >= data.previousClose }">
+          <td>{{data.symbol}}</td>
+          <td>{{data.lastPrice}}</td>
+          <td>{{data.open}}</td>
+          <td>{{data.dayHigh}}</td>
+          <td>{{data.dayLow}}</td>
+          <td>{{data.previousClose}}</td>
+          <td>{{data.pChange}}</td>
+          <td>{{data.totalTradedVolume}}</td>
+          <td>{{data.totalTradedValue ? (data.totalTradedValue / 10000000).toFixed(2) : 0 }}</td>
 
-      </tr>
-    </tbody>
+        </tr>
+      </tbody>
 
 
-  </table>
+    </table>
+  </div>
 </div>

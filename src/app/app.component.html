@@ -37,15 +37,11 @@
                 <button type="button" id="sidebarCollapse" class="btn btn-info" (click)="clickEvent()">
                     <i class="fas fa-align-left"></i>
                 </button>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+              
             </div>
         </nav>
 
         <router-outlet></router-outlet>
     </div>
 
-    <div class="overlay" [ngClass]="status ? 'active' : ''"></div>
+    <div class="overlay" [ngClass]="status ? 'active' : ''"  (click)="clickEvent2()"></div>

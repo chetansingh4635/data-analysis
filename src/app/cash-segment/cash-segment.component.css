@@ -42,3 +42,12 @@
     font-weight: bold;
   }
 
+  .meta-data {
+    padding: 17px;
+    border: solid 1px;
+  }
+
+  .meta-data-item {
+    padding: 11px;
+    border: solid 1px blue;
+  }

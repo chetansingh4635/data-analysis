@@ -12,12 +12,17 @@ export class FuturesSegmentComponent implements OnInit {
   public symbol: string | null;
   public nifty_futures_data: any;
   public selected_expiry_data: any = { data: [] };
+  public interval_instance: any;
 
   constructor(private route: ActivatedRoute, private service: FuturesSegmentService) {
 
     this.symbol = this.route.snapshot.paramMap.get('symbol');
+    this.getFutuesDataandSave()
 
-    service.getNiftyFuturesData().subscribe((data: any) => {
+  }
+
+  getFutuesDataandSave() {
+    this.service.getNiftyFuturesData().subscribe((data: any) => {
       console.log('future data', data);
 
       if (localStorage.getItem('futures_data')) {
@@ -46,7 +51,6 @@ export class FuturesSegmentComponent implements OnInit {
     });
   }
 
-
   selectedStrikePrice(expiryDate: string) {
     this.selected_expiry_data = this.nifty_futures_data.filter((data: any) => data.expiryDate === expiryDate)[0];
     console.log(this.selected_expiry_data.data.sort((a: any, b: any) => b.time - a.time));
@@ -58,8 +62,15 @@ export class FuturesSegmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('ngonint called called');
+    this.interval_instance = setInterval(() => {
+      this.getFutuesDataandSave();
+    }, 1000 * 60);
+  }
 
+  ngOnDestroy(): void {
+    if (this.interval_instance) {
+      clearInterval(this.interval_instance);
+    }
   }
 
 

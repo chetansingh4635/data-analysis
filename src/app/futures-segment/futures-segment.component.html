@@ -1,10 +1,15 @@
+<div>
+  <span *ngFor="let data of nifty_futures_data; index as i;">
+      <button type="button" [ngClass]="{'btn btn-primary ': data.expiryDate === selected_expiry_data.expiryDate}"
+          class="strike-buttons" (click)="selectedStrikePrice(data.expiryDate)">{{data.expiryDate}}</button>
+  </span>
+
 <div class="fixTableHead">
     <table class="sortable">
       <thead>
         <tr>
-          <th>Symbol</th>
-          <th>Expiry</th>
-          <th>Current Price</th>
+          <th>Time</th>
+          <th>LTP</th>
           <th>Volume</th>
           <th>OI (Open)</th>
           <th>Change</th>
@@ -12,10 +17,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of nifty_futures_data?.data; index as i; first as isFirst" class="item"
+        <tr *ngFor="let data of selected_expiry_data?.data; index as i; first as isFirst" class="item"
           [ngClass]="{'down': data.change < 0, 'up' : data.change >= 0 }">
-          <td>{{data.underlying}}</td>
-          <td>{{data.expiryDate}}</td>
+          <td>{{data.time}}</td>
           <td>{{data.lastPrice}}</td>
           <td>{{data.noOfTrades}}</td>
           <td>{{data.openInterest}}</td>
@@ -27,4 +31,5 @@
   
   
     </table>
+  </div>
   </div>

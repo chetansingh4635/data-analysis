@@ -11,22 +11,56 @@ export class FuturesSegmentComponent implements OnInit {
 
   public symbol: string | null;
   public nifty_futures_data: any;
-    constructor(private route: ActivatedRoute, private service: FuturesSegmentService) {
-      
-      this.symbol = this.route.snapshot.paramMap.get('symbol');
+  public selected_expiry_data: any = { data: [] };
 
-        service.getNiftyFuturesData().subscribe((data:any) => {
-          console.log('future data', data);
-    
-          this.nifty_futures_data = data.data ? data : { data : []};
-          
-        });  
-     }
-  
-    ngOnInit(): void {
-      console.log('ngonint called called');
-  
-    }
-  
+  constructor(private route: ActivatedRoute, private service: FuturesSegmentService) {
+
+    this.symbol = this.route.snapshot.paramMap.get('symbol');
+
+    service.getNiftyFuturesData().subscribe((data: any) => {
+      console.log('future data', data);
+
+      if (localStorage.getItem('futures_data')) {
+        this.nifty_futures_data = JSON.parse(localStorage.getItem('futures_data') || "[]");
+        this.nifty_futures_data.forEach((strike_data: any) => {
+          let obj = data.data.find((obj: any) => obj.expiryDate == strike_data.expiryDate);
+          obj.time = new Date().toLocaleTimeString();
+          strike_data.data = strike_data.data.concat([{ ...obj }]);
+        })
+        localStorage.setItem('futures_data', JSON.stringify(this.nifty_futures_data))
+      } else {
+        this.nifty_futures_data = data.data.map((obj: any) => ({ expiryDate: obj.expiryDate }));
+        this.nifty_futures_data.forEach((strike_data: any) => {
+          let obj = data.data.find((obj: any) => obj.expiryDate == strike_data.expiryDate);
+          obj.time = new Date().toLocaleTimeString();;
+          strike_data.data = [{ ...obj }];
+        })
+        localStorage.setItem('futures_data', JSON.stringify(this.nifty_futures_data));
+      }
+
+      this.nifty_futures_data = JSON.parse(localStorage.getItem('futures_data') || "[]");
+      if (this.selected_expiry_data.expiryDate)
+        this.selectedStrikePrice(this.selected_expiry_data.expiryDate);
+      console.log('options data', this.nifty_futures_data);
+
+    });
+  }
+
+
+  selectedStrikePrice(expiryDate: string) {
+    this.selected_expiry_data = this.nifty_futures_data.filter((data: any) => data.expiryDate === expiryDate)[0];
+    console.log(this.selected_expiry_data.data.sort((a: any, b: any) => b.time - a.time));
+
+    this.selected_expiry_data.data.reverse();
+
+    console.log('selected_expiry_data', this.selected_expiry_data);
+
+  }
+
+  ngOnInit(): void {
+    console.log('ngonint called called');
+
+  }
+
 
 }

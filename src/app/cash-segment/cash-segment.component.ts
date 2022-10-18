@@ -26,7 +26,7 @@ export class CashSegmentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.interval_instance = setInterval(() => {
       this.updateNiftyDataOnInterval();
-    }, 1000);
+    }, 1000 * 60);
   }
 
   public updateNiftyDataOnInterval() {

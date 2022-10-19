@@ -35,7 +35,7 @@
                     <td>{{nested_data['CE'].changeinOpenInterest}}</td>
                     <td>{{nested_data['CE'].totalTradedVolume}}</td>
                     <td>{{((nested_data['CE'].changeinOpenInterest /
-                        nested_data['CE'].totalTradedVolume)*100).toFixed(2)}}</td>
+                        (nested_data['CE'].totalTradedVolume / 50))).toFixed(2)}}</td>
                     <td></td>
 
                     <td>{{nested_data.time}}</td>
@@ -45,7 +45,7 @@
                     <td>{{nested_data['PE'].changeinOpenInterest}}</td>
                     <td>{{nested_data['PE'].totalTradedVolume}}</td>
                     <td>{{((nested_data['PE'].changeinOpenInterest /
-                        nested_data['PE'].totalTradedVolume)*100).toFixed(2)}}</td>
+                        (nested_data['PE'].totalTradedVolume / 50))).toFixed(2)}}</td>
 
                     <td></td>
 

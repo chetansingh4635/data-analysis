@@ -9,22 +9,24 @@
       <thead>
         <tr>
           <th>Time</th>
-          <th>LTP</th>
+          <th>Underlyibg LTP</th>
+          <th>Fut. LTP</th>
           <th>Volume</th>
           <th>OI (Open)</th>
-          <th>Change</th>
-          <th>% Change</th>
+          <th>Value (Cr.)</th>
+          <th>Change in value</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of selected_expiry_data?.data; index as i; first as isFirst" class="item"
           [ngClass]="{'down': data.change < 0, 'up' : data.change >= 0 }">
           <td>{{data.time}}</td>
+          <td>{{data.underlyingValue}}</td>
           <td>{{data.lastPrice}}</td>
           <td>{{data.noOfTrades}}</td>
           <td>{{data.openInterest}}</td>
-          <td>{{data.change}}</td>
-          <td>{{data.pChange}}</td>
+          <td>{{(data.value  / 10000000).toFixed(2) }}</td>
+          <td>{{ i > 0 ? ((data.value - selected_expiry_data?.data[i-1].value) / 10000000) : 0}}</td>
   
         </tr>
       </tbody>

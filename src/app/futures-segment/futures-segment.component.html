@@ -26,7 +26,7 @@
           <td>{{data.noOfTrades}}</td>
           <td>{{data.openInterest}}</td>
           <td>{{(data.value  / 10000000).toFixed(2) }}</td>
-          <td>{{ i > 0 ? ((data.value - selected_expiry_data?.data[i-1].value) / 10000000) : 0}}</td>
+          <td>{{ selected_expiry_data?.data?.length > 2 && (i+1 != selected_expiry_data?.data?.length) ? ((data.value - selected_expiry_data?.data[i+1].value) / 10000000) : 0}}</td>
   
         </tr>
       </tbody>

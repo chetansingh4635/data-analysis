@@ -29,23 +29,23 @@
             <tbody>
                 <tr *ngFor="let nested_data of selected_strike_data?.data; index as j; " class="item">
                     <td>{{nested_data.time}}</td>
-                    <td>{{nested_data['CE'].lastPrice}}</td>
-                    <td>{{nested_data['CE'].impliedVolatility}}</td>
-                    <td>{{nested_data['CE'].openInterest}}</td>
-                    <td>{{nested_data['CE'].changeinOpenInterest}}</td>
-                    <td>{{nested_data['CE'].totalTradedVolume}}</td>
-                    <td>{{((nested_data['CE'].changeinOpenInterest /
-                        (nested_data['CE'].totalTradedVolume / 50))).toFixed(2)}}</td>
+                    <td>{{nested_data['CE']?.lastPrice}}</td>
+                    <td>{{nested_data['CE']?.impliedVolatility}}</td>
+                    <td>{{nested_data['CE']?.openInterest}}</td>
+                    <td>{{nested_data['CE']?.changeinOpenInterest}}</td>
+                    <td>{{nested_data['CE']?.totalTradedVolume}}</td>
+                    <td>{{((nested_data['CE']?.changeinOpenInterest /
+                        (nested_data['CE']?.totalTradedVolume / 50))).toFixed(2)}}</td>
                     <td></td>
 
-                    <td>{{nested_data.time}}</td>
-                    <td>{{nested_data['PE'].lastPrice}}</td>
-                    <td>{{nested_data['PE'].impliedVolatility}}</td>
-                    <td>{{nested_data['PE'].openInterest}}</td>
-                    <td>{{nested_data['PE'].changeinOpenInterest}}</td>
-                    <td>{{nested_data['PE'].totalTradedVolume}}</td>
-                    <td>{{((nested_data['PE'].changeinOpenInterest /
-                        (nested_data['PE'].totalTradedVolume / 50))).toFixed(2)}}</td>
+                    <td>{{nested_data?.time}}</td>
+                    <td>{{nested_data['PE']?.lastPrice}}</td>
+                    <td>{{nested_data['PE']?.impliedVolatility}}</td>
+                    <td>{{nested_data['PE']?.openInterest}}</td>
+                    <td>{{nested_data['PE']?.changeinOpenInterest}}</td>
+                    <td>{{nested_data['PE']?.totalTradedVolume}}</td>
+                    <td>{{((nested_data['PE']?.changeinOpenInterest /
+                        (nested_data['PE']?.totalTradedVolume / 50))).toFixed(2)}}</td>
 
                     <td></td>
 

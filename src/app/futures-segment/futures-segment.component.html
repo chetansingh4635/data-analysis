@@ -1,10 +1,24 @@
 <div>
+  <div [hidden]="!isShow">
+    <div style="display: block;" *ngIf="selected_expiry_data?.data.length > 0">
+      <canvas baseChart width="3000" height="2000" [type]="'line'" [data]="lineChartData1" [legend]="lineChartLegend">
+      </canvas>
+    </div>
+    <div style="display: block;" *ngIf="selected_expiry_data?.data.length > 0">
+      <canvas baseChart width="3000" height="2000" [type]="'line'" [data]="lineChartData3" [legend]="lineChartLegend">
+      </canvas>
+    </div>
+  </div>
+  <span>
+    <button type="button" [ngClass]="{'btn btn-primary ': true}" class="strike-buttons"
+      (click)="toggleCharts()">{{isShow ? 'Hide Chart' : 'Show Chart'}}</button>
+  </span>
   <span *ngFor="let data of nifty_futures_data; index as i;">
-      <button type="button" [ngClass]="{'btn btn-primary ': data.expiryDate === selected_expiry_data.expiryDate}"
-          class="strike-buttons" (click)="selectedStrikePrice(data.expiryDate)">{{data.expiryDate}}</button>
+    <button type="button" [ngClass]="{'btn btn-primary ': data.expiryDate === selected_expiry_data.expiryDate}"
+      class="strike-buttons" (click)="selectedStrikePrice(data.expiryDate)">{{data.expiryDate}}</button>
   </span>
 
-<div class="fixTableHead">
+  <div class="fixTableHead">
     <table class="sortable">
       <thead>
         <tr>
@@ -25,13 +39,14 @@
           <td>{{data.lastPrice}}</td>
           <td>{{data.noOfTrades}}</td>
           <td>{{data.openInterest}}</td>
-          <td>{{(data.value  / 10000000).toFixed(2) }}</td>
-          <td>{{ selected_expiry_data?.data?.length > 2 && (i+1 != selected_expiry_data?.data?.length) ? ((data.value - selected_expiry_data?.data[i+1].value) / 10000000) : 0}}</td>
-  
+          <td>{{(data.value / 10000000).toFixed(2) }}</td>
+          <td>{{ selected_expiry_data?.data?.length > 2 && (i+1 != selected_expiry_data?.data?.length) ? ((data.value -
+            selected_expiry_data?.data[i+1].value) / 10000000) : 0}}</td>
+
         </tr>
       </tbody>
-  
-  
+
+
     </table>
   </div>
-  </div>
+</div>

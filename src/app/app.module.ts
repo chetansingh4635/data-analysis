@@ -10,6 +10,7 @@ import { FuturesSegmentComponent } from './futures-segment/futures-segment.compo
 import { OptionsSegmentComponent } from './options-segment/options-segment.component';
 import { FuturesSegmentService } from './futures-segment/futures-segment.service';
 import { OptionsSegmentService } from './options-segment/options-segment.service';
+import { NgChartsModule  } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { OptionsSegmentService } from './options-segment/options-segment.service
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule 
   ],
   providers: [CashSegmentService, FuturesSegmentService, OptionsSegmentService],
   bootstrap: [AppComponent]
